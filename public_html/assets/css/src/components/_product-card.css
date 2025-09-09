@@ -1,0 +1,117 @@
+/*
+  Gravita Perfumes - Core Stylesheet
+  Component: _product-card.css
+  Phase 2: New Look & Feel
+*/
+
+.product-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.product-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  animation: fadeInUp 0.5s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent);
+}
+
+.product-card__img-link {
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+
+.product-card__img {
+  aspect-ratio: 1 / 1;
+  background: var(--bg-alt);
+}
+
+.product-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow) ease;
+}
+
+.product-card:hover .product-card__img img {
+  transform: scale(1.08);
+}
+
+.product-card__body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.product-card__title {
+  font-weight: 600;
+  margin: 0 0 8px;
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.product-card__title a {
+  transition: color var(--transition-fast);
+}
+
+.product-card__title a:hover {
+  color: var(--accent);
+}
+
+.product-card__price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 16px;
+}
+
+.product-card__price .current {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.product-card__price .mrp {
+  font-size: 14px;
+  color: var(--fg-muted);
+  text-decoration: line-through;
+}
+
+.product-card__cta {
+  margin-top: auto;
+}
+
+.product-card .btn {
+  width: 100%;
+  background-color: var(--accent);
+  color: #fff;
+  font-size: 15px;
+}
+
+.product-card .btn:hover {
+  background-color: var(--accent-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.product-card .btn .icon {
+  transition: transform var(--transition-base);
+}
+
+.product-card .btn:hover .icon {
+  transform: translateX(4px);
+}

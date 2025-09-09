@@ -1,0 +1,38 @@
+/*
+  Gravita Perfumes - Core Stylesheet
+  Module: _variables.css
+  Description: Defines all CSS custom properties (variables) for the design system.
+*/
+
+:root {
+  /* Colors */
+  --fg: #111;
+  --fg-muted: #666;
+  --bg: #fff;
+  --bg-alt: #f8f8f8;
+  --border: #eee;
+
+  /* Theme Colors */
+  --primary: #111;
+  --primary-hover: #333;
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+  --accent-rgb: 99, 102, 241;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
+
+  /* Shadows & Radius */
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 8px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 16px rgba(0,0,0,0.1);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* Transitions */
+  --transition-fast: all 0.2s ease;
+  --transition-base: all 0.3s ease;
+  --transition-slow: all 0.5s ease;
+}
