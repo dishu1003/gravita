@@ -3,7 +3,9 @@
   This file imports all the modular CSS files.
   Do not add styles directly to this file. Instead, add them to the appropriate module in the `src/` directory.
 */
-
+feature/improve-code-quality
+/* === Public-Facing Site Styles === */
+======= main
 @import url('src/_variables.css');
 @import url('src/_base.css');
 @import url('src/_animations.css');
@@ -24,6 +26,13 @@
 @import url('src/pages/_quiz.css');
 @import url('src/pages/_contact.css');
 @import url('src/pages/_cart.css');
+feature/improve-code-quality
+@import url('src/pages/_product.css');
+@import url('src/pages/_account.css');
+
+/* === Admin Panel Styles === */
+@import url('src/admin/_main.css');
+=======
 feature/improve-code-quality
 @import url('src/pages/_product.css');
 ======= main
