@@ -1,0 +1,129 @@
+/*
+  Gravita Perfumes - Admin Stylesheet
+*/
+
+:root {
+  --admin-bg: #f4f7fa;
+  --admin-sidebar-bg: #2c3e50;
+  --admin-sidebar-text: #ecf0f1;
+  --admin-sidebar-active: #3498db;
+  --admin-header-bg: #fff;
+  --admin-card-bg: #fff;
+  --admin-border: #e2e8f0;
+}
+
+body.admin-page {
+  background-color: var(--admin-bg);
+  display: flex;
+}
+
+.admin-sidebar {
+  width: 240px;
+  background-color: var(--admin-sidebar-bg);
+  color: var(--admin-sidebar-text);
+  padding: 20px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.admin-sidebar h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+.admin-sidebar h2 a {
+  color: #fff;
+}
+
+.admin-nav a {
+  display: block;
+  color: var(--admin-sidebar-text);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  margin-bottom: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.admin-nav a:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+.admin-nav a.active {
+  background-color: var(--admin-sidebar-active);
+  font-weight: 600;
+}
+
+.admin-main {
+  margin-left: 240px;
+  flex-grow: 1;
+  padding: 24px;
+}
+
+.admin-header {
+  background: var(--admin-header-bg);
+  padding: 16px 24px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-card {
+  background: var(--admin-card-bg);
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 24px;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--admin-card-bg);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.admin-table th, .admin-table td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--admin-border);
+}
+.admin-table thead {
+  background: var(--bg-alt);
+}
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.admin-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+.admin-table .actions a, .admin-table .actions button {
+  margin-right: 8px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+}
+.stat-card {
+  background: var(--admin-card-bg);
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.stat-card__label {
+  font-size: 16px;
+  color: var(--fg-muted);
+}
+.stat-card__value {
+  font-size: 32px;
+  font-weight: 700;
+  margin-top: 8px;
+}

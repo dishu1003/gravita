@@ -1,0 +1,82 @@
+/*
+  Gravita Perfumes - Core Stylesheet
+  Page: _product.css
+*/
+
+.product-page-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .product-page-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: flex-start;
+  }
+}
+
+.product-gallery__image {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.product-info__title {
+  font-size: clamp(28px, 5vw, 36px);
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.product-info__price {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+.product-info__price .mrp {
+  font-size: 18px;
+  color: var(--fg-muted);
+  text-decoration: line-through;
+}
+
+.product-info__description {
+  color: var(--fg-muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.product-add-to-cart-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.product-add-to-cart-form .quantity-selector input {
+  height: 48px; /* Match button height */
+  border-right: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.product-add-to-cart-form .quantity-selector button {
+  height: 48px;
+  width: 48px;
+}
+
+.product-add-to-cart-form .btn {
+  flex-grow: 1;
+}
+
+.product-accordion {
+  border-top: 1px solid var(--border);
+  margin-top: 24px;
+}
+
+.related-products {
+  border-top: 1px solid var(--border);
+  padding-top: 48px;
+  margin-top: 48px;
+}

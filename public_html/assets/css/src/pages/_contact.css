@@ -1,0 +1,34 @@
+/*
+  Gravita Perfumes - Core Stylesheet
+  Page: _contact.css
+*/
+
+.contact-form-container {
+  max-width: 700px;
+  margin: 0 auto;
+  background: var(--bg);
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+.alert {
+  padding: 16px;
+  margin-bottom: 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font-weight: 500;
+}
+
+.alert--success {
+  background-color: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #166534;
+}
+
+.alert--error {
+  background-color: #fff1f2;
+  border-color: #fecdd3;
+  color: #9f1239;
+}

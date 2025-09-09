@@ -1,0 +1,158 @@
+/*
+  Gravita Perfumes - Core Stylesheet
+  Page: _cart.css
+*/
+
+.cart-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 992px) {
+  .cart-container {
+    grid-template-columns: 2fr 1fr;
+    align-items: flex-start;
+  }
+}
+
+.cart-items {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  gap: 16px;
+  padding: 16px;
+  align-items: center;
+  position: relative;
+}
+
+.cart-item:not(:last-child) {
+  border-bottom: 1px solid var(--border);
+}
+
+.cart-item__img img {
+  border-radius: var(--radius-md);
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.cart-item__info {
+  font-weight: 600;
+}
+.cart-item__info a {
+  transition: color var(--transition-fast);
+}
+.cart-item__info a:hover {
+  color: var(--accent);
+}
+.cart-item__price {
+  color: var(--fg-muted);
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.cart-item__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.quantity-selector button {
+  background: transparent;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+.quantity-selector input {
+  width: 40px;
+  text-align: center;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0;
+  background: transparent;
+}
+/* Hide number input spinners */
+.quantity-selector input[type=number]::-webkit-inner-spin-button,
+.quantity-selector input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.quantity-selector input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.cart-item__remove {
+  font-size: 14px;
+  color: var(--error);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.cart-item__remove:hover {
+  text-decoration: underline;
+}
+
+.cart-summary {
+  background: var(--bg-alt);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  position: sticky;
+  top: 100px; /* Adjust based on header height */
+}
+.cart-summary__title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+.cart-summary__row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.cart-summary__total {
+  font-weight: 700;
+  font-size: 18px;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  margin-top: 12px;
+}
+.cart-summary .btn {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.cart-empty {
+  text-align: center;
+  padding: 64px;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-lg);
+}
+.cart-empty__icon {
+  font-size: 48px;
+  opacity: 0.5;
+  margin-bottom: 16px;
+}
+.cart-empty h2 {
+  margin: 0 0 16px;
+}
+.cart-empty p {
+  color: var(--fg-muted);
+  margin-bottom: 24px;
+}

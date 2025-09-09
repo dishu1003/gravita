@@ -1,0 +1,50 @@
+/*
+  Gravita Perfumes - Core Stylesheet
+  Layout: _section.css
+*/
+
+.section {
+  padding: 64px 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fadeInUp 0.8s ease;
+}
+
+.section__header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section__title {
+  font-size: clamp(28px, 4vw, 36px);
+  margin: 0 0 16px;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+
+.section__title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -8px;
+  width: 60px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+.section__subtitle {
+  font-size: 18px;
+  color: var(--fg-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.section__footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}

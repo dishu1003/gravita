@@ -3,38 +3,46 @@ require __DIR__ . '/../includes/config.php';
 require __DIR__ . '/../includes/functions.php';
 require_admin();
 
-if (isset($_GET['export']) && $_GET['export']==='csv') {
-    header('Content-Type: text/csv');
-    header('Content-Disposition: attachment; filename="newsletter.csv"');
-    $out=fopen('php://output','w'); fputcsv($out,['Email','Subscribed At']);
-    $rows=$pdo->query("SELECT email, created_at FROM newsletter_subscribers ORDER BY created_at DESC")->fetchAll(PDO::FETCH_NUM);
-    foreach ($rows as $r) fputcsv($out,$r);
-    fclose($out); exit;
-}
+$pageTitle = 'Newsletter Subscribers';
 
-$list=$pdo->query("SELECT email, created_at FROM newsletter_subscribers ORDER BY created_at DESC LIMIT 1000")->fetchAll(PDO::FETCH_ASSOC);
+$subscribers = $pdo->query("SELECT email, created_at FROM newsletter_subscribers ORDER BY created_at DESC")->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8"><title>Newsletter — PerfumeStore</title>
-<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/assets/css/main.css">
-</head>
-<body>
-<main class="section">
-  <h1>Newsletter Subscribers</h1>
-  <nav style="margin-bottom:12px;"><a href="/admin/index.php">← Back</a> | <a href="?export=csv">Export CSV</a></nav>
-  <table style="width:100%;border-collapse:collapse;">
-    <thead><tr><th>Email</th><th>Subscribed At</th></tr></thead>
-    <tbody>
-      <?php foreach ($list as $r): ?>
-      <tr style="border-top:1px solid #eee;">
-        <td><?php echo e($r['email']); ?></td>
-        <td><?php echo e($r['created_at']); ?></td>
-      </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
-</main>
-</body>
-</html>
+<?php include __DIR__ . '/partials/header.php'; ?>
+
+<div class="admin-card">
+    <h2>All Subscribers</h2>
+    <p>
+        <a href="#" id="copy-emails" class="btn btn--primary">Copy All Emails</a>
+    </p>
+    <textarea id="email-list" style="opacity: 0; position: absolute; left: -9999px;">
+        <?php echo implode(', ', array_column($subscribers, 'email')); ?>
+    </textarea>
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Subscribed On</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($subscribers as $sub): ?>
+                <tr>
+                    <td><a href="mailto:<?php echo e($sub['email']); ?>"><?php echo e($sub['email']); ?></a></td>
+                    <td><?php echo date('d M Y, H:i', strtotime($sub['created_at'])); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+
+<script>
+document.getElementById('copy-emails').addEventListener('click', function(e) {
+    e.preventDefault();
+    const emailList = document.getElementById('email-list');
+    emailList.select();
+    document.execCommand('copy');
+    alert('All emails copied to clipboard!');
+});
+</script>
+
+<?php include __DIR__ . '/partials/footer.php'; ?>

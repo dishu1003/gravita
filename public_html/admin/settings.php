@@ -3,51 +3,90 @@ require __DIR__ . '/../includes/config.php';
 require __DIR__ . '/../includes/functions.php';
 require_admin();
 
-$msg=null;$err=null;
-$keys = ['site_title','site_url','tax_percent','shipping_flat','razorpay_key_id','razorpay_key_secret','razorpay_webhook_secret','smtp_host','smtp_user','smtp_pass','smtp_port'];
+$pageTitle = 'Settings';
+$msg = null;
+$err = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!csrf_validate($_POST['_csrf'] ?? '')) { $err='Invalid CSRF'; }
-    if (!$err) {
+    if (!csrf_validate($_POST['_csrf'] ?? '')) { $err = 'Invalid CSRF token.'; }
+    else {
+        $settings_to_update = $_POST['settings'] ?? [];
         try {
-            $ins = $pdo->prepare("INSERT INTO settings (`key`,`value`) VALUES (?,?) ON DUPLICATE KEY UPDATE `value`=VALUES(`value`)");
-            foreach ($keys as $k) { $ins->execute([$k, sanitize_string($_POST[$k] ?? '')]); }
-            $msg='Settings saved';
-        } catch (Throwable $e) { $err='Save failed'; log_error('admin_settings_save',$e); }
+            $stmt = $pdo->prepare("UPDATE settings SET `value` = ? WHERE `key` = ?");
+            foreach ($settings_to_update as $key => $value) {
+                $stmt->execute([sanitize_string($value), $key]);
+            }
+            $msg = 'Settings updated successfully.';
+        } catch (Throwable $e) {
+            $err = 'Failed to update settings.';
+            log_error('admin_settings_update', $e);
+        }
     }
 }
+
 $settings = get_settings($pdo);
+
 ?>
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8"><title>Settings — PerfumeStore</title>
-<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/assets/css/main.css">
-</head>
-<body>
-<main class="section">
-  <h1>Settings</h1>
-  <nav style="margin-bottom:12px;"><a href="/admin/index.php">← Back</a></nav>
-  <?php if ($msg): ?><div role="status" style="padding:8px;border:1px solid #0c0;background:#efe;color:#060;"><?php echo e($msg); ?></div><?php endif; ?>
-  <?php if ($err): ?><div role="alert" style="padding:8px;border:1px solid #c00;background:#fee;color:#600;"><?php echo e($err); ?></div><?php endif; ?>
-  <form method="post" class="form" autocomplete="off">
-    <input type="hidden" name="_csrf" value="<?php echo e(csrf_token()); ?>">
-    <h3>Site</h3>
-    <div><label>Title</label><br><input name="site_title" value="<?php echo e($settings['site_title'] ?? 'PerfumeStore'); ?>"></div>
-    <div><label>Site URL</label><br><input name="site_url" value="<?php echo e($settings['site_url'] ?? SITE_URL); ?>"></div>
-    <div><label>Tax %</label><br><input name="tax_percent" type="number" step="0.01" value="<?php echo e($settings['tax_percent'] ?? '5'); ?>"></div>
-    <div><label>Shipping Flat</label><br><input name="shipping_flat" type="number" step="0.01" value="<?php echo e($settings['shipping_flat'] ?? '49'); ?>"></div>
-    <h3>Razorpay</h3>
-    <div><label>Key ID</label><br><input name="razorpay_key_id" value="<?php echo e($settings['razorpay_key_id'] ?? ''); ?>"></div>
-    <div><label>Key Secret</label><br><input name="razorpay_key_secret" value="<?php echo e($settings['razorpay_key_secret'] ?? ''); ?>"></div>
-    <div><label>Webhook Secret</label><br><input name="razorpay_webhook_secret" value="<?php echo e($settings['razorpay_webhook_secret'] ?? ''); ?>"></div>
-    <h3>SMTP</h3>
-    <div><label>Host</label><br><input name="smtp_host" value="<?php echo e($settings['smtp_host'] ?? SMTP_HOST); ?>"></div>
-    <div><label>User</label><br><input name="smtp_user" value="<?php echo e($settings['smtp_user'] ?? SMTP_USER); ?>"></div>
-    <div><label>Pass</label><br><input name="smtp_pass" value="<?php echo e($settings['smtp_pass'] ?? ''); ?>"></div>
-    <div><label>Port</label><br><input name="smtp_port" value="<?php echo e($settings['smtp_port'] ?? SMTP_PORT); ?>"></div>
-    <button class="btn btn--primary" type="submit">Save</button>
-  </form>
-</main>
-</body>
-</html>
+<?php include __DIR__ . '/partials/header.php'; ?>
+
+<?php if ($msg): ?><div class="alert alert--success"><?php echo e($msg); ?></div><?php endif; ?>
+<?php if ($err): ?><div class="alert alert--error"><?php echo e($err); ?></div><?php endif; ?>
+
+<div class="admin-card">
+    <h2>Site Settings</h2>
+    <form method="post" class="form">
+        <input type="hidden" name="_csrf" value="<?php echo e(csrf_token()); ?>">
+
+        <div class="form-group">
+            <label for="setting-site_title" class="form-label">Site Title</label>
+            <input type="text" id="setting-site_title" name="settings[site_title]" class="form-control" value="<?php echo e($settings['site_title'] ?? ''); ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="setting-tax_percent" class="form-label">Tax Percent (%)</label>
+            <input type="number" step="0.01" id="setting-tax_percent" name="settings[tax_percent]" class="form-control" value="<?php echo e($settings['tax_percent'] ?? '0'); ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="setting-shipping_flat" class="form-label">Shipping Flat Rate (INR)</label>
+            <input type="number" step="0.01" id="setting-shipping_flat" name="settings[shipping_flat]" class="form-control" value="<?php echo e($settings['shipping_flat'] ?? '0'); ?>">
+        </div>
+
+        <hr style="margin: 24px 0;">
+        <h3>Payment Gateway (Razorpay)</h3>
+
+        <div class="form-group">
+            <label for="setting-razorpay_key_id" class="form-label">Key ID</label>
+            <input type="text" id="setting-razorpay_key_id" name="settings[razorpay_key_id]" class="form-control" value="<?php echo e($settings['razorpay_key_id'] ?? ''); ?>">
+        </div>
+        <div class="form-group">
+            <label for="setting-razorpay_key_secret" class="form-label">Key Secret</label>
+            <input type="password" id="setting-razorpay_key_secret" name="settings[razorpay_key_secret]" class="form-control" value="<?php echo e($settings['razorpay_key_secret'] ?? ''); ?>">
+        </div>
+
+        <hr style="margin: 24px 0;">
+        <h3>Email (SMTP)</h3>
+
+        <div class="form-group">
+            <label for="setting-smtp_host" class="form-label">SMTP Host</label>
+            <input type="text" id="setting-smtp_host" name="settings[smtp_host]" class="form-control" value="<?php echo e($settings['smtp_host'] ?? ''); ?>">
+        </div>
+        <div class="form-group">
+            <label for="setting-smtp_port" class="form-label">SMTP Port</label>
+            <input type="text" id="setting-smtp_port" name="settings[smtp_port]" class="form-control" value="<?php echo e($settings['smtp_port'] ?? ''); ?>">
+        </div>
+        <div class="form-group">
+            <label for="setting-smtp_user" class="form-label">SMTP User</label>
+            <input type="text" id="setting-smtp_user" name="settings[smtp_user]" class="form-control" value="<?php echo e($settings['smtp_user'] ?? ''); ?>">
+        </div>
+        <div class="form-group">
+            <label for="setting-smtp_pass" class="form-label">SMTP Password</label>
+            <input type="password" id="setting-smtp_pass" name="settings[smtp_pass]" class="form-control" value="<?php echo e($settings['smtp_pass'] ?? ''); ?>">
+        </div>
+
+        <button class="btn btn--primary" type="submit">Save Settings</button>
+    </form>
+</div>
+
+
+<?php include __DIR__ . '/partials/footer.php'; ?>
