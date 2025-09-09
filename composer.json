@@ -1,0 +1,14 @@
+{
+  "name": "dishantparihar/grayvita-website",
+  "description": "Custom PHP website for grayvita.dishantparihar.com",
+  "type": "project",
+  "license": "proprietary",
+  "require": {
+    "php": ">=7.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  }
+}
