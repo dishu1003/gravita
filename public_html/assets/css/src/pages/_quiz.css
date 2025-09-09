@@ -1,0 +1,95 @@
+/*
+  Gravita Perfumes - Core Stylesheet
+  Page: _quiz.css
+*/
+
+.quiz-form {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.quiz-step {
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+  animation: fadeInUp 0.6s ease;
+}
+
+.quiz-step__legend {
+  font-size: clamp(20px, 3vw, 24px);
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: var(--fg);
+}
+
+.quiz-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.quiz-option {
+  position: relative;
+}
+
+.quiz-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.quiz-option__label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: var(--transition-base);
+  height: 100%;
+}
+
+.quiz-option__label:hover {
+  border-color: var(--accent);
+  background-color: var(--bg-alt);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.quiz-option input[type="radio"]:checked + .quiz-option__label {
+  border-color: var(--accent);
+  background-color: #f4f4f8; /* A light accent color */
+  box-shadow: var(--shadow-md);
+  transform: translateY(-5px);
+  color: var(--accent);
+}
+
+.quiz-option__icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+  color: var(--accent);
+  transition: transform var(--transition-base);
+}
+
+.quiz-option:hover .quiz-option__icon {
+  transform: scale(1.1);
+}
+
+.quiz-option__title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.quiz-submit-container {
+  text-align: center;
+  margin-top: 32px;
+}
+
+.quiz-results {
+  margin-top: 64px;
+  animation: fadeInUp 0.8s ease;
+}

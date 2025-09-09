@@ -21,3 +21,6 @@
 
 /* Pages */
 @import url('src/pages/_hero.css');
+@import url('src/pages/_quiz.css');
+@import url('src/pages/_contact.css');
+@import url('src/pages/_cart.css');
