@@ -1,0 +1,26 @@
+/*
+  Gravita Perfumes - Core Stylesheet
+  Module: _utilities.css
+  Description: Shared utility classes for spacing, visibility, etc.
+*/
+
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* For scroll-triggered animations */
+.will-appear {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.has-appeared {
+  opacity: 1;
+  transform: translateY(0);
+}

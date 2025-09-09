@@ -1,0 +1,121 @@
+/*
+  Gravita Perfumes - Core Stylesheet
+  Component: _carousel.css
+*/
+
+.carousel {
+  position: relative;
+}
+
+.carousel__container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 16px;
+  padding-bottom: 24px; /* For scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--border);
+}
+
+.carousel__container::-webkit-scrollbar {
+  height: 8px;
+}
+.carousel__container::-webkit-scrollbar-track {
+  background: var(--border);
+  border-radius: 4px;
+}
+.carousel__container::-webkit-scrollbar-thumb {
+  background-color: var(--accent);
+  border-radius: 4px;
+}
+
+.carousel__item {
+  flex: 0 0 300px;
+  scroll-snap-align: start;
+}
+
+.carousel__controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.carousel__btn {
+  background: var(--bg);
+  color: var(--primary);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-base);
+}
+
+.carousel__btn:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+.carousel__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: scale(1);
+  background: var(--bg-alt);
+  box-shadow: none;
+}
+
+/* Specific styles for testimonial cards inside a carousel */
+.testimonial-card {
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.testimonial-card__quote-icon {
+  color: var(--accent);
+  opacity: 0.2;
+  margin-bottom: 16px;
+  font-size: 48px;
+  line-height: 1;
+}
+
+.testimonial-card__text {
+  flex-grow: 1;
+  margin: 0 0 16px;
+  font-style: italic;
+  color: var(--fg-muted);
+}
+
+.testimonial-card__footer {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.testimonial-card__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 12px;
+}
+
+.testimonial-card__name {
+  font-weight: 600;
+}

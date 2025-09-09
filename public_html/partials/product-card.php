@@ -45,6 +45,7 @@ $productUrl = '/product.php?slug=' . urlencode($product['slug']);
             <img src="/uploads/<?php echo e($product['image']); ?>" 
                  alt="<?php echo e($product['name']); ?>" 
                  loading="lazy"
+                 decoding="async"
                  width="300"
                  height="300">
         </div>
@@ -71,7 +72,10 @@ $productUrl = '/product.php?slug=' . urlencode($product['slug']);
                 <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
                 <input type="hidden" name="product_id" value="<?php echo (int)$product['id']; ?>">
                 <input type="hidden" name="action" value="add">
-                <button type="submit" class="btn">Add to Cart</button>
+                <button type="submit" class="btn btn--with-icon">
+                    <span>Add to Cart</span>
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
             </form>
         </div>
     </div>
