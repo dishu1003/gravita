@@ -1,0 +1,6 @@
+# Protect uploads from executing scripts
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule \.(php|phtml|phar|pl|py|cgi|sh)$ - [F,L,NC]
+</IfModule>
+Options -ExecCGI

@@ -1,0 +1,48 @@
+[2025-08-10 18:23:48] seed_admin_password: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'u782093275_perfume.users' doesn't exist in /home/u782093275/domains/grayvita.dishantparihar.com/public_html/includes/config.php:68
+Trace: #0 /home/u782093275/domains/grayvita.dishantparihar.com/public_html/includes/config.php(68): PDO->prepare()
+#1 /home/u782093275/domains/grayvita.dishantparihar.com/public_html/index.php(2): require('/home/u78209327...')
+#2 {main}
+
+[2025-08-10 18:27:24] seed_admin_password: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'u782093275_perfume.users' doesn't exist in /home/u782093275/domains/grayvita.dishantparihar.com/public_html/includes/config.php:68
+Trace: #0 /home/u782093275/domains/grayvita.dishantparihar.com/public_html/includes/config.php(68): PDO->prepare()
+#1 /home/u782093275/domains/grayvita.dishantparihar.com/public_html/index.php(2): require('/home/u78209327...')
+#2 {main}
+
+[2025-08-10 18:27:37] seed_admin_password: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'u782093275_perfume.users' doesn't exist in /home/u782093275/domains/grayvita.dishantparihar.com/public_html/includes/config.php:68
+Trace: #0 /home/u782093275/domains/grayvita.dishantparihar.com/public_html/includes/config.php(68): PDO->prepare()
+#1 /home/u782093275/domains/grayvita.dishantparihar.com/public_html/index.php(2): require('/home/u78209327...')
+#2 {main}
+
+[2025-08-10 18:31:56] seed_admin_password: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'u782093275_perfume.users' doesn't exist in /home/u782093275/domains/grayvita.dishantparihar.com/public_html/includes/config.php:68
+Trace: #0 /home/u782093275/domains/grayvita.dishantparihar.com/public_html/includes/config.php(68): PDO->prepare()
+#1 /home/u782093275/domains/grayvita.dishantparihar.com/public_html/index.php(2): require('/home/u78209327...')
+#2 {main}
+
+[2025-08-10 18:51:51] shop_fetch: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters in /home/u782093275/domains/grayvita.dishantparihar.com/public_html/shop.php:38
+Trace: #0 /home/u782093275/domains/grayvita.dishantparihar.com/public_html/shop.php(38): PDO->prepare()
+#1 {main}
+
+[2025-08-10 19:03:16] shop_fetch: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters in /home/u782093275/domains/grayvita.dishantparihar.com/public_html/shop.php:38
+Trace: #0 /home/u782093275/domains/grayvita.dishantparihar.com/public_html/shop.php(38): PDO->prepare()
+#1 {main}
+
+[2025-08-10 19:05:59] shop_fetch: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters in /home/u782093275/domains/grayvita.dishantparihar.com/public_html/shop.php:38
+Trace: #0 /home/u782093275/domains/grayvita.dishantparihar.com/public_html/shop.php(38): PDO->prepare()
+#1 {main}
+
+[2025-08-10 19:08:56] shop_fetch: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters in /home/u782093275/domains/grayvita.dishantparihar.com/public_html/shop.php:36
+Trace: #0 /home/u782093275/domains/grayvita.dishantparihar.com/public_html/shop.php(36): PDO->prepare()
+#1 {main}
+
+[2025-08-10 19:21:20] razorpay_create_order: Razorpay create order HTTP 401 => {"error":{"description":"Authentication failed","code":"BAD_REQUEST_ERROR"}} in /home/u782093275/domains/grayvita.dishantparihar.com/public_html/includes/functions.php:192
+Trace: #0 /home/u782093275/domains/grayvita.dishantparihar.com/public_html/checkout.php(27): create_razorpay_order()
+#1 {main}
+
+[2025-08-11 12:55:23] razorpay_create_order: Razorpay create order HTTP 401 => {"error":{"code":"BAD_REQUEST_ERROR","description":"Authentication failed"}} in /home/u782093275/domains/grayvita.dishantparihar.com/public_html/includes/functions.php:192
+Trace: #0 /home/u782093275/domains/grayvita.dishantparihar.com/public_html/checkout.php(27): create_razorpay_order()
+#1 {main}
+
+[2025-08-11 12:55:30] razorpay_create_order: Razorpay create order HTTP 401 => {"error":{"code":"BAD_REQUEST_ERROR","description":"Authentication failed"}} in /home/u782093275/domains/grayvita.dishantparihar.com/public_html/includes/functions.php:192
+Trace: #0 /home/u782093275/domains/grayvita.dishantparihar.com/public_html/checkout.php(27): create_razorpay_order()
+#1 {main}
+
