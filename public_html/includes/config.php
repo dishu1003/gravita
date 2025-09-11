@@ -46,12 +46,18 @@ const SMTP_FROM_NAME = 'PerfumeStore'; // This can remain as it's not a secret
 // =======================
 
 // Stricter CSP (no inline scripts; we moved checkout inline js to /assets/js/checkout.js)
-header("Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' https://checkout.razorpay.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; frame-src https://api.razorpay.com https://checkout.razorpay.com; frame-ancestors 'self';");
+header("Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' https://checkout.razorpay.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://api.razorpay.com https://checkout.razorpay.com; frame-src https://api.razorpay.com https://checkout.razorpay.com; frame-ancestors 'self';");
 
 // HSTS if HTTPS
 if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')) {
     header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload');
 }
+
+// Additional security headers
+header('X-Content-Type-Options: nosniff');
+header('Referrer-Policy: strict-origin-when-cross-origin');
+header('X-Frame-Options: SAMEORIGIN');
+header("Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()");
 
 // Ensure logs dir
 $logsDir = __DIR__ . '/../logs';

@@ -1,3 +1,13 @@
+Options -Indexes
+<IfModule mod_php7.c>
+  php_flag engine off
+</IfModule>
+<IfModule mod_php.c>
+  php_flag engine off
+</IfModule>
+<FilesMatch "\.(php|php\d+|phtml|phar)$">
+  Require all denied
+</FilesMatch>
 # Protect uploads from executing scripts
 <IfModule mod_rewrite.c>
 RewriteEngine On

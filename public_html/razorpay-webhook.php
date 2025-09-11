@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') { http_response_code(405); exit; }
 $body = file_get_contents('php://input');
 $signature = $_SERVER['HTTP_X_RAZORPAY_SIGNATURE'] ?? ($_SERVER['X_RAZORPAY_SIGNATURE'] ?? '');
 
-$secret = get_setting($pdo, 'razorpay_webhook_secret', RAZORPAY_WEBHOOK_SECRET);
+$secret = get_setting($pdo, 'razorpay_webhook_secret', getenv('RAZORPAY_WEBHOOK_SECRET') ?: '');
 if (!$signature || !$secret) { http_response_code(400); exit('missing'); }
 
 if (!verify_razorpay_signature($body, $signature, $secret)) {

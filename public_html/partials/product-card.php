@@ -69,7 +69,7 @@ $productUrl = '/product.php?slug=' . urlencode($product['slug']);
         
         <div class="product-card__cta">
             <form action="/cart.php" method="post" data-add-to-cart>
-                <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+                <input type="hidden" name="_csrf" value="<?php echo e(csrf_token()); ?>">
                 <input type="hidden" name="product_id" value="<?php echo (int)$product['id']; ?>">
                 <input type="hidden" name="action" value="add">
                 <button type="submit" class="btn btn--with-icon">

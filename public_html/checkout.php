@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $upd->execute([$rzpOrder['id'], $orderId]);
     } catch (Throwable $e) { log_error('razorpay_create_order', $e); echo json_encode(['success'=>false,'error'=>'Payment gateway error']); exit; }
     cart_clear();
-    echo json_encode(['success'=>true,'order_id'=>$orderId,'rzp_order'=>$rzpOrder,'key_id'=> get_setting($pdo,'razorpay_key_id', RAZORPAY_KEY_ID),'customer'=>$customer]);
+    echo json_encode(['success'=>true,'order_id'=>$orderId,'rzp_order'=>$rzpOrder,'key_id'=> get_setting($pdo,'razorpay_key_id', getenv('RAZORPAY_KEY_ID') ?: ''),'customer'=>$customer]);
     exit;
 }
 

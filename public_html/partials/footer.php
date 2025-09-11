@@ -8,10 +8,10 @@ $year = date('Y');
       Luxury solid perfumes & attars in India.
     </div>
     <nav aria-label="Footer">
-      <a href="policy-privacy.php">Privacy</a>
-      <a href="policy-terms.php">Terms</a>
-      <a href="policy-shipping.php">Shipping</a>
-      <a href="sitemap.xml">Sitemap</a>
+      <a href="/policy-privacy.php">Privacy</a>
+      <a href="/policy-terms.php">Terms</a>
+      <a href="/policy-shipping.php">Shipping</a>
+      <a href="/sitemap.xml">Sitemap</a>
     </nav>
   </div>
   <div class="footer__sub">
