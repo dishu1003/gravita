@@ -56,6 +56,9 @@ $pageTitle = 'Your Shopping Cart — PerfumeStore';
         <h1 class="section__title">Your Cart</h1>
     </div>
 
+    <!-- CSRF token for AJAX cart updates -->
+    <input type="hidden" name="_csrf" value="<?php echo e(csrf_token()); ?>">
+
     <div id="cart-container" class="cart-container">
         <?php if (empty($items)): ?>
             <div class="cart-empty">

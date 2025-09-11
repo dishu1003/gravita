@@ -38,6 +38,30 @@ if ($current_category_id) {
 
 $sql .= " ORDER BY " . $sort_options[$current_sort];
 
+// 5. Pagination
+$perPage = 12;
+$page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
+$offset = ($page - 1) * $perPage;
+
+// Count total matching products (for pagination UI)
+$countSql = "SELECT COUNT(*) FROM products p";
+$countParams = [];
+if ($current_category_id) {
+    $countSql .= " WHERE p.category_id = ?";
+    $countParams[] = $current_category_id;
+}
+try {
+    $countStmt = $pdo->prepare($countSql);
+    $countStmt->execute($countParams);
+    $total = (int)$countStmt->fetchColumn();
+} catch (Throwable $e) {
+    log_error('shop_products_count', $e);
+    $total = 0;
+}
+
+// Append limit/offset for current page (inline safe integers; MySQL native prepares don't allow binding LIMIT/OFFSET)
+$sql .= " LIMIT " . (int)$perPage . " OFFSET " . (int)$offset;
+
 // --- End of Logic ---
 
 
@@ -155,10 +179,17 @@ $pageCanonical = SITE_URL . '/shop.php';
   <?php
     $pages = max(1, (int)ceil($total / $perPage));
     if ($pages > 1):
+      $baseQuery = [
+        'sort' => $current_sort,
+      ];
+      if ($current_category_id) { $baseQuery['category'] = (int)$current_category_id; }
   ?>
   <nav aria-label="Pagination" style="margin-top:16px;">
-    <?php for ($i=1;$i<=$pages;$i++): ?>
-      <a href="?<?php echo http_build_query(['cat'=>$category,'page'=>$i]); ?>" style="margin-right:8px;<?php if($i===$page) echo 'font-weight:700;'; ?>"><?php echo $i; ?></a>
+    <?php for ($i = 1; $i <= $pages; $i++):
+      $q = $baseQuery; $q['page'] = $i; $href = '?' . http_build_query($q);
+      $isCurrent = ($i === $page);
+    ?>
+      <a href="<?php echo e($href); ?>" style="margin-right:8px;<?php if ($isCurrent) echo 'font-weight:700;'; ?>"><?php echo $i; ?></a>
     <?php endfor; ?>
   </nav>
   <?php endif; ?>
