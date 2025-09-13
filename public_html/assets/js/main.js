@@ -135,11 +135,51 @@
       });
     });
   
-    // Service worker
+    // Advanced Service Worker with update notifications
     if ('serviceWorker' in navigator && window.isSecureContext) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js').catch(() => {});
+      window.addEventListener('load', async () => {
+        try {
+          const registration = await navigator.serviceWorker.register('/service-worker-advanced.js');
+          
+          // Check for updates
+          registration.addEventListener('updatefound', () => {
+            const newWorker = registration.installing;
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                // New service worker available
+                showUpdateNotification();
+              }
+            });
+          });
+          
+          // Enable periodic background sync
+          if ('periodicSync' in registration) {
+            try {
+              await registration.periodicSync.register('update-prices', {
+                minInterval: 24 * 60 * 60 * 1000 // 24 hours
+              });
+            } catch (error) {
+              console.log('Periodic sync not available');
+            }
+          }
+        } catch (error) {
+          console.error('Service worker registration failed:', error);
+        }
       });
+      
+      // Show update notification
+      function showUpdateNotification() {
+        const updateBanner = document.createElement('div');
+        updateBanner.className = 'update-banner';
+        updateBanner.innerHTML = `
+          <div class="update-banner__content">
+            <span>A new version of PerfumeStore is available!</span>
+            <button class="update-banner__button" onclick="window.location.reload()">Update Now</button>
+          </div>
+        `;
+        document.body.appendChild(updateBanner);
+        setTimeout(() => updateBanner.classList.add('update-banner--visible'), 100);
+      }
     }
     
     // Intersection Observer for scroll animations

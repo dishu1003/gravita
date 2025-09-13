@@ -40,6 +40,22 @@ $productUrl = '/product.php?slug=' . urlencode($product['slug']);
     <div class="product-card__discount"><?php echo $discount; ?>% OFF</div>
     <?php endif; ?>
     
+    <button class="wishlist-btn" 
+            data-wishlist-toggle
+            data-product-id="<?php echo (int)$product['id']; ?>"
+            data-product-name="<?php echo e($product['name']); ?>"
+            data-product-price="<?php echo $product['price']; ?>"
+            data-product-image="<?php echo e($product['image']); ?>"
+            data-product-slug="<?php echo e($product['slug']); ?>"
+            aria-label="Add to wishlist"
+            aria-pressed="false">
+        <span class="wishlist-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+        </span>
+    </button>
+    
     <a href="<?php echo e($productUrl); ?>" class="product-card__img-link">
         <div class="product-card__img">
             <img src="/uploads/<?php echo e($product['image']); ?>" 
@@ -66,6 +82,10 @@ $productUrl = '/product.php?slug=' . urlencode($product['slug']);
             <span class="mrp"><?php echo $formattedMrp; ?></span>
             <?php endif; ?>
         </div>
+        
+        <?php if (isset($product['stock']) && $product['stock'] <= 5 && $product['stock'] > 0): ?>
+        <div data-stock-count="<?php echo $product['stock']; ?>"></div>
+        <?php endif; ?>
         
         <div class="product-card__cta">
             <form action="/cart.php" method="post" data-add-to-cart>

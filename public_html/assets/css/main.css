@@ -9,6 +9,7 @@
 @import url('src/_base.css');
 @import url('src/_animations.css');
 @import url('src/_utilities.css');
+@import url('src/components/_animations.css');
 
 /* Layouts */
 @import url('src/layout/_section.css');
@@ -20,6 +21,9 @@
 @import url('src/components/_product-card.css');
 @import url('src/components/_carousel.css');
 @import url('src/components/_feature-callouts.css');
+@import url('src/components/_advanced-search.css');
+@import url('src/components/_wishlist.css');
+@import url('src/components/_social-proof.css');
 
 /* Pages */
 @import url('src/pages/_hero.css');
