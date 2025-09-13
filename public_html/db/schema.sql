@@ -131,6 +131,44 @@ CREATE TABLE IF NOT EXISTS webhook_events (
   INDEX (created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- Search logs for analytics
+CREATE TABLE IF NOT EXISTS search_logs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  query VARCHAR(255) NOT NULL,
+  result_count INT NOT NULL DEFAULT 0,
+  user_id INT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+  INDEX (query),
+  INDEX (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Wishlist table
+CREATE TABLE IF NOT EXISTS wishlist (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  product_id INT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+  UNIQUE KEY unique_user_product (user_id, product_id),
+  INDEX (user_id),
+  INDEX (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- User activity logs
+CREATE TABLE IF NOT EXISTS user_activity_logs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  action VARCHAR(100) NOT NULL,
+  meta JSON NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  INDEX (user_id),
+  INDEX (action),
+  INDEX (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- Seed categories
 INSERT INTO categories (name, slug, description) VALUES
 ('Attar', 'attar', 'Alcohol-free attars'),

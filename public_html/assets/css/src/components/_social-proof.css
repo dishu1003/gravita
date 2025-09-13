@@ -1,0 +1,369 @@
+/* Social Proof Notifications */
+.social-proof-container {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.social-proof-notification {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 350px;
+  transform: translateX(-120%);
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  pointer-events: all;
+  position: relative;
+}
+
+.social-proof-notification.social-proof-visible {
+  transform: translateX(0);
+}
+
+.social-proof-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.social-proof-purchase .social-proof-icon {
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+}
+
+.social-proof-viewing .social-proof-icon {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.social-proof-cart .social-proof-icon {
+  background: rgba(251, 146, 60, 0.1);
+  color: #fb923c;
+}
+
+.social-proof-stock .social-proof-icon {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.social-proof-discount .social-proof-icon {
+  background: rgba(168, 85, 247, 0.1);
+  color: #a855f7;
+}
+
+.social-proof-content {
+  flex: 1;
+}
+
+.social-proof-message {
+  font-size: 0.875rem;
+  color: var(--color-gray-800);
+  margin: 0 0 0.25rem 0;
+  line-height: 1.4;
+}
+
+.social-proof-time {
+  font-size: 0.75rem;
+  color: var(--color-gray-500);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.social-proof-time::before {
+  content: '✓';
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.social-proof-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: var(--color-gray-400);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.social-proof-close:hover {
+  background: var(--color-gray-100);
+  color: var(--color-gray-600);
+}
+
+/* Urgency Indicators */
+.urgency-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.urgency-indicator.stock-low {
+  animation: pulse-red 2s ease-in-out infinite;
+}
+
+@keyframes pulse-red {
+  0%, 100% {
+    background: rgba(239, 68, 68, 0.1);
+  }
+  50% {
+    background: rgba(239, 68, 68, 0.2);
+  }
+}
+
+.pulse-animation {
+  animation: pulse-scale 1s ease-in-out infinite;
+}
+
+@keyframes pulse-scale {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Countdown Timer */
+.countdown-timer {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.countdown-unit {
+  text-align: center;
+  color: white;
+}
+
+.countdown-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.countdown-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-top: 0.25rem;
+}
+
+.countdown-urgent .countdown-timer {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  animation: countdown-pulse 1s ease-in-out infinite;
+}
+
+@keyframes countdown-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+}
+
+/* Viewer Count */
+.viewer-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  border-radius: 20px;
+  font-size: 0.875rem;
+}
+
+.viewer-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Limited Offer Badge */
+.limited-offer-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+  animation: badge-entrance 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 10;
+}
+
+@keyframes badge-entrance {
+  from {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+
+.limited-offer-badge svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Trust Badges */
+.trust-badges {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  background: var(--color-gray-50);
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.trust-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.trust-badge-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: var(--color-primary);
+}
+
+.trust-badge-text {
+  font-size: 0.875rem;
+  color: var(--color-gray-700);
+  font-weight: 500;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .social-proof-container {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+  }
+  
+  .social-proof-notification {
+    max-width: none;
+  }
+  
+  .countdown-timer {
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+  
+  .countdown-value {
+    font-size: 1.5rem;
+  }
+  
+  .trust-badges {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .social-proof-notification {
+    transition: none;
+  }
+  
+  .pulse-animation,
+  .urgency-indicator.stock-low,
+  .countdown-urgent .countdown-timer,
+  .viewer-dot {
+    animation: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .social-proof-notification {
+    background: #1f2937;
+    color: #f3f4f6;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  }
+  
+  .social-proof-message {
+    color: #f3f4f6;
+  }
+  
+  .social-proof-time {
+    color: #9ca3af;
+  }
+  
+  .social-proof-close {
+    color: #6b7280;
+  }
+  
+  .social-proof-close:hover {
+    background: #374151;
+    color: #d1d5db;
+  }
+}

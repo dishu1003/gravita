@@ -46,9 +46,15 @@ $pageCanonical = SITE_URL . '/';
 <meta property="og:url" content="<?php echo e($pageCanonical); ?>">
 <meta property="og:image" content="<?php echo e(SITE_URL); ?>/assets/images/og-hero.jpg">
 <link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="/assets/css/main.css?v=8">
+<link rel="stylesheet" href="/assets/css/main.css?v=10">
+<!-- GSAP for advanced animations -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/TextPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/CustomEase.min.js"></script>
 </head>
 <body>
+<progress value="0" max="100"></progress>
 <?php include __DIR__ . '/partials/header.php'; ?>
 
 <main id="main-content">
@@ -149,10 +155,55 @@ $pageCanonical = SITE_URL . '/';
   </section>
   <?php endif; ?>
 
+  <section class="section will-appear">
+    <div class="trust-badges">
+      <div class="trust-badge">
+        <div class="trust-badge-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+          </svg>
+        </div>
+        <span class="trust-badge-text">4.9/5 Rating</span>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-badge-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 11H3v10h6M12 2v10m5-10v10h6v10"></path>
+          </svg>
+        </div>
+        <span class="trust-badge-text">10,000+ Happy Customers</span>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-badge-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+          </svg>
+        </div>
+        <span class="trust-badge-text">100% Authentic</span>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-badge-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+        </div>
+        <span class="trust-badge-text">Secure Payment</span>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <?php include __DIR__ . '/partials/footer.php'; ?>
 <script src="/assets/js/main.js" defer></script>
 <script src="/assets/js/carousel.js" defer></script>
+<script src="/assets/js/advanced-search.js" defer></script>
+<script src="/assets/js/wishlist.js" defer></script>
+<script src="/assets/js/animations.js" defer></script>
+<script src="/assets/js/social-proof.js" defer></script>
 </body>
 </html>
